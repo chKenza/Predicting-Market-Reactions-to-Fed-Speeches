@@ -1,0 +1,42 @@
+# FedShock configuration: date, path and model names.
+# Paths are relative to the repository root.
+
+dates:
+  start: "2010-01-01"
+  end: null
+  test_start: "2023-01-01"   # train on [start, test_start), test on [test_start, end]
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  meta: data/meta
+  speeches_raw: data/raw/speeches.parquet
+  market_raw: data/raw/market.parquet
+  sentences_scored: data/processed/sentences_scored.parquet
+  events: data/processed/events.parquet
+  speakers: data/meta/speakers.csv
+  excluded_dates: data/meta/excluded_dates.csv
+
+sources:
+  fed_rss: https://www.federalreserve.gov/feeds/speeches.xml
+  hf_speeches: istat-ai/cb-speeches
+
+market:
+  fred_series: [DGS2, DGS10]
+  tickers: [SPY, "^VIX"]
+
+text:
+  classifier: gtfintechlab/FOMC-RoBERTa
+  batch_size: 32
+  min_policy_sentences: 5
+  # label ids of FOMC-RoBERTa: 0 = dovish, 1 = hawkish, 2 = neutral
+  labels: {0: dovish, 1: hawkish, 2: neutral}
+
+features:
+  surprise_window: 5     # previous speeches of the same speaker
+
+chronos:
+  model: amazon/chronos-2
+  context_length: 512
+
+seed: 42
