@@ -1,6 +1,6 @@
 # Predicting-Market-Reactions-to-Fed-Speeches
 
-**FedShock** scores Fed speeches as hawkish or dovish with FOMC-RoBERTa and tests whether that score predicts the 2-year Treasury yield and S&P 500 move on the speech day.
+**FedShock** scores Fed speeches as hawkish or dovish with FOMC-RoBERTa and tests whether that score predicts the 2-year Treasury yield and S&P 500 move on the speech day. It builds on *Trillion Dollar Words* (Shah, Paturi, Chava, ACL 2023), which linked its stance score to yield *levels*.
 
 ## Setup
 
