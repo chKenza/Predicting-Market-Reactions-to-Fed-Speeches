@@ -8,7 +8,6 @@ Requires [uv](https://docs.astral.sh/uv/) and Python 3.11–3.12.
 
 ```bash
 uv sync                    # creates .venv and installs deps from uv.lock
-cp .env.example .env       # then add your FRED_API_KEY
 ```
 
 All dates, the train/test cut-off and file paths are in `config.yaml`. Load them in code with:
