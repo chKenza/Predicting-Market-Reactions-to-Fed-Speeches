@@ -14,7 +14,7 @@ cp .env.example .env       # then add your FRED_API_KEY
 All dates, the train/test cut-off and file paths are in `config.yaml`. Load them in code with:
 
 ```python
-from fedshock import load_config, path
+from src import load_config, path
 cfg = load_config()
 path("speeches_raw")
 ```
@@ -27,12 +27,15 @@ pyproject.toml       dependencies (exact versions pinned in uv.lock)
 data/raw/            downloaded speeches + market data (git-ignored)
 data/processed/      scored sentences, event table (git-ignored)
 data/meta/           speakers.csv, excluded_dates.csv (hand-made, versioned)
-src/fedshock/        pipeline modules: collect, clean, score, market, features, model, chronos_bench
-notebooks/           01_eda … 04_chronos_benchmark
+src/                 reusable functions: config, collect, clean, score, market, features, model, chronos_bench
+analysis/            notebooks that run the analysis (01_eda … 04_chronos_benchmark)
 ```
 
-## Running a step
+## Workflow
 
-```bash
-uv run python -m fedshock.collect     # likewise: clean, score, market, features, model, chronos_bench
+`src/` only holds reusable functions; it is not meant to be run directly. The analysis lives in the notebooks in `analysis/`, which import from it:
+
+```python
+from src.collect import ...
+from src.score import ...
 ```
